@@ -61,7 +61,7 @@ namespace ObservingEmailOperations
                 var smtp = new SmtpClient
                 {
                     Host = "smtp.gmail.com",
-                    Port = 587,
+                    Port = 587, // 465 veya 587 olabilir...
                     EnableSsl = true, // SSL kullan
                     DeliveryMethod = SmtpDeliveryMethod.Network,
                     UseDefaultCredentials = false,
@@ -79,7 +79,9 @@ namespace ObservingEmailOperations
                 mail.To.Add(toEmail);
                 mail.Subject = "Test E-postası";
                 mail.Body = "Bu bir test e-postasıdır.";
-
+                mail.IsBodyHtml= true;
+                // Attachment ile mail gönderme, bunun için file name girelim... 
+                mail.Attachments.Add(new Attachment(@"C:\MailAttachment\defaultavatar.png"));
                 
 
                 // E-posta iletilerini gönderme
